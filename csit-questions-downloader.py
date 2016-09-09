@@ -27,13 +27,13 @@ import sys
 from subprocess import call
 
 def download():
-	 for year in range(2065,2070):
+	for year in range(2065,2070):
 		call(["mkdir", selected])
 		call(["wget","https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf", "-P", selected])
 		print("Successfully downloaded "+str(selected)+"-"+str(year))
-	print("Good Luck ! This project is open source and is written in python.")
-	print("===============github.com/arunpyasi/csit-question-downloader==============)
-	print("Written in basic Python language")
+	print "Good Luck ! This project is open source and is written in python by Arun."
+	print "===============github.com/arunpyasi/csit-question-downloader=============="
+	print "Written in basic Python language" 
 
 print "+++Welcome to CSIT Old is Gold CLI based Downloader+++"
 sem = input("Enter the semester number you wanna download : ")
