@@ -31,7 +31,7 @@ def download():
 		call(["mkdir", selected])
 		call(["wget","https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf", "-P", selected])
 		print("Successfully downloaded "+str(selected)+"-"+str(year))
-	print "Good Luck ! This project is open source and is written in python by Arun."
+	print "Good Luck ! This project is open source and is written in python."
 	print "===============github.com/arunpyasi/csit-question-downloader=============="
 	print "Written in basic Python language" 
 
