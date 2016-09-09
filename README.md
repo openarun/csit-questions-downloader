@@ -1,5 +1,5 @@
 # csit-questions-downloader
-A simple Python script to download CSIT Questions Collection for All Sem.
+A simple Python script to download All year CSIT Questions Collection for All Sem.
 ## Dependencies :
 Wget - A command line based Downloader.
 Though wget is preinstalled in almost all linux distributions, if you don't have you can install from the official repositories.
