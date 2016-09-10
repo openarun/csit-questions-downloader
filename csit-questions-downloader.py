@@ -23,13 +23,31 @@
 #SOFTWARE.
 
 
-import sys
+import sys, urllib2, os
 from subprocess import call
 
 def download():
+	if not os.path.exists(selected):
+			os.makedirs(selected)
 	for year in range(2065,2070):
-		call(["mkdir", selected])
-		call(["wget","https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf", "-P", selected])
+		#call(["wget","https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf", "-P", selected])
+
+		url = "https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf"
+
+		attempts = 0
+		while attempts < 3:
+			try:
+				response = urllib2.urlopen(url, timeout = 5)
+				print("Downloading "+str(selected)+"-"+str(year) + "wait...")
+				content = response.read()
+				path = str(selected)+"/"+str(year)+".pdf"
+				f = open( path, 'wb' )
+				f.write( content )
+				f.close()
+				break
+			except urllib2.URLError as e:
+				attempts += 1
+				print type(e)
 		print("Successfully downloaded "+str(selected)+"-"+str(year))
 	print "Good Luck ! This project is open source and is written in python."
 	print "===============github.com/arunpyasi/csit-question-downloader=============="
