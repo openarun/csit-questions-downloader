@@ -49,6 +49,7 @@ if sem == 2:
 	print "6. ALL"
 else:
 	print "Get the hell out of here"
+	exit(0)
 
 subno = input("Enter the subject here.")
 subdata = ["dsa", "dl", "mp", "la", "sta", "ds", "all"]
