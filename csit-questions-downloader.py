@@ -24,21 +24,48 @@
 
 
 import sys, urllib2, os
-from subprocess import call
+
+
+
+def chunk_report(bytes_so_far, chunk_size, total_size):
+   percent = float(bytes_so_far) / total_size
+   percent = round(percent*100, 2)
+   sys.stdout.write("Downloaded %d of %d bytes (%0.2f%%)\r" % 
+       (bytes_so_far, total_size, percent))
+
+   if bytes_so_far >= total_size:
+      sys.stdout.write('\n')
+
+def chunk_read(response, chunk_size=8192, report_hook=None):
+   total_size = response.info().getheader('Content-Length').strip()
+   total_size = int(total_size)
+   bytes_so_far = 0
+
+   while 1:
+      chunk = response.read(chunk_size)
+      bytes_so_far += len(chunk)
+
+      if not chunk:
+         break
+
+      if report_hook:
+         report_hook(bytes_so_far, chunk_size, total_size)
+
+   return bytes_so_far
+
 
 def download():
 	if not os.path.exists(selected):
 			os.makedirs(selected)
 	for year in range(2065,2070):
-		#call(["wget","https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf", "-P", selected])
-
 		url = "https://ia902601.us.archive.org/27/items/bio-2066/"+str(selected)+"-"+str(year)+".pdf"
 
 		attempts = 0
 		while attempts < 3:
 			try:
 				response = urllib2.urlopen(url, timeout = 5)
-				print("Downloading "+str(selected)+"-"+str(year) + "wait...")
+				chunk_read(response, report_hook=chunk_report)				
+				#print("Downloading "+str(selected)+"-"+str(year) + "wait...")
 				content = response.read()
 				path = str(selected)+"/"+str(year)+".pdf"
 				f = open( path, 'wb' )
@@ -77,4 +104,4 @@ if subno == 6:
 		download()
 else:
 	selected = str(subdata[subno])
-	download()
+download()
