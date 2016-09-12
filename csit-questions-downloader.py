@@ -24,10 +24,6 @@
 
 
 import sys, urllib2, os
-<<<<<<< HEAD
-=======
-
-
 
 def chunk_report(bytes_so_far, chunk_size, total_size):
    percent = float(bytes_so_far) / total_size
@@ -54,8 +50,6 @@ def chunk_read(response, chunk_size=8192, report_hook=None):
          report_hook(bytes_so_far, chunk_size, total_size)
 
    return bytes_so_far
-
->>>>>>> c13958c6f778cc9ca276448fe017f87583b52a41
 
 def download():
 	if not os.path.exists(selected):
