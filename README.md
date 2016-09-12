@@ -2,7 +2,7 @@
 A simple Python script to download All year CSIT Questions Collection for All Sem.
 
 ## Dependencies :
-<<<<<<< HEAD
+
 ###For Windows :
 You can download python from the following url.
 https://www.python.org/downloads/windows/
@@ -18,5 +18,3 @@ Python : ofcourse it is a python script.
 ##TODO :
 * Add other semister question.
 * GUI
-
->>>>>>> c13958c6f778cc9ca276448fe017f87583b52a41
